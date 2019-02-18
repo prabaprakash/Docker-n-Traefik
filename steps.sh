@@ -1,7 +1,8 @@
 sudo apt-get install apache2-utils
 htpasswd -nb admin password
 admin:$apr1$d.N9fSyN$laldHl2TvioNvPvQ7pQVn1
-nano traefik.toml
+
+docker network create proxy
 
 docker run -d \
   -v /var/run/docker.sock:/var/run/docker.sock \
