@@ -1,6 +1,6 @@
 sudo apt-get install apache2-utils
 htpasswd -nb admin password
-admin:$apr1$ruca84Hq$mbjdMZBAG.KWn7vfN/SNK/
+admin:$apr1$d.N9fSyN$laldHl2TvioNvPvQ7pQVn1
 nano traefik.toml
 
 docker run -d \
