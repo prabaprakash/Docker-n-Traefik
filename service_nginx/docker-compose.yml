@@ -8,9 +8,11 @@ networks:
 
 services:
   blog:
-    image: .
+    build: 
+      context: .
+      dockerfile: Dockerfile
     environment:
-      NODE_ENV: prod
+      - NODE_ENV=prod
     labels:
       - traefik.backend=blog
       - traefik.frontend.rule=Host:blog.vaayadi.in
