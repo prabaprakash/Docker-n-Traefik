@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 
 networks:
   proxy:
@@ -7,17 +7,19 @@ networks:
     external: false
 
 services:
-  blog:
-    build: 
+  golang:
+    build:
       context: .
       dockerfile: Dockerfile
+    volumes:
+       - /local/entertainment:/files
     environment:
       - NODE_ENV=prod
     labels:
-      - traefik.backend=blog
-      - traefik.frontend.rule=Host:blog.vaayadi.in
+      - traefik.backend=golang
+      - traefik.frontend.rule=Host:golang.vaayadi.in
       - traefik.docker.network=proxy
-      - traefik.port=80
+      - traefik.port=8100
     networks:
       - internal
       - proxy
