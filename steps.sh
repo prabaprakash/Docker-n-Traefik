@@ -15,4 +15,4 @@ docker run -d \
   --network proxy \
   --name traefik \
   traefik --docker
-
+docker-compose -f docker-compose.yml up -d

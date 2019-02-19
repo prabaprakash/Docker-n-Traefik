@@ -1,0 +1,21 @@
+version: "3"
+
+networks:
+  proxy:
+    external: true
+  internal:
+    external: false
+
+services:
+  spring:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    labels:
+      - traefik.backend=spring
+      - traefik.frontend.rule=Host:spring.vaayadi.in
+      - traefik.docker.network=proxy
+      - traefik.port=8080
+    networks:
+      - internal
+      - proxy
