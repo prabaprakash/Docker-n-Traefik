@@ -1,0 +1,23 @@
+version: '3'
+
+networks:
+  proxy:
+    external: true
+  internal:
+    external: false
+
+services:
+  squid:
+    build:
+      context: .
+    labels:
+      - traefik.backend=squid
+      - traefik.frontend.rule=Host:squid.vaayadi.in
+      - traefik.docker.network=proxy
+      - traefik.port=3128
+    networks:
+      - internal
+      - proxy
+    restart: always
+
+
