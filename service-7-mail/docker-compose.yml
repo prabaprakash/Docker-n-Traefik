@@ -1,0 +1,25 @@
+version: '3'
+
+networks:
+  proxy:
+    external: true
+  internal:
+    external: false
+
+services:
+  mail:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+       - /local/entertainment:/files
+    environment:
+      - NODE_ENV=prod
+    labels:
+      - traefik.backend=mail
+      - traefik.frontend.rule=Host:mail.vaayadi.in
+      - traefik.docker.network=proxy
+      - traefik.port=8080
+    networks:
+      - internal
+      - proxy
