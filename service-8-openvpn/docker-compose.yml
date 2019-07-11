@@ -20,7 +20,7 @@ services:
       - traefik.backend=openvpn
       - traefik.frontend.rule=Host:openvpn.vaayadi.in
       - traefik.docker.network=proxy
-      - traefik.port=8080
+      - traefik.port=1194
     networks:
       - internal
       - proxy
