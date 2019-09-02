@@ -1,0 +1,36 @@
+version: '3'
+networks:
+  proxy:
+    external: true
+  internal:
+    external: false
+services:
+  postgres:
+    image: postgres
+    restart: always
+    volumes:
+     - db_data:/var/lib/postgresql/data
+    networks:
+      - internal
+      - proxy
+  graphql-engine:
+    image: hasura/graphql-engine:v1.0.0-beta.6
+    depends_on:
+    - "postgres"
+    restart: always
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:@postgres:5432/postgres
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      ## uncomment next line to set an admin secret
+      HASURA_GRAPHQL_ADMIN_SECRET: password123
+    labels:
+      - traefik.backend=hasura
+      - traefik.frontend.rule=Host:hasura.vaayadi.in
+      - traefik.docker.network=proxy
+      - traefik.port=8080
+    networks:
+      - internal
+      - proxy
+volumes:
+  db_data:
