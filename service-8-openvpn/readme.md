@@ -1,4 +1,4 @@
-# OpenVpn with Pihole AD Blocker
+# OpenVpn
 
 * Add a new service in docker-compose.yml
 
