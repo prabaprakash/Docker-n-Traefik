@@ -1,23 +1,5 @@
 # OpenVpn
 
-* Add a new service in docker-compose.yml
-
-```yaml
-version: '2'
-services:
-  openvpn:
-    cap_add:
-     - NET_ADMIN
-    image: kylemanna/openvpn
-    container_name: openvpn
-    ports:
-     - "1194:1194/udp"
-    restart: always
-    volumes:
-     - ./openvpn-data/conf:/etc/openvpn
-```
-
-
 * Initialize the configuration files and certificates
 
 ```bash
