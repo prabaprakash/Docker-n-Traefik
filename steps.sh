@@ -14,5 +14,5 @@ docker run -d \
   -l traefik.port=8080 \
   --network proxy \
   --name traefik \
-  traefik --docker
+  traefik:v1.7.8 --docker
 docker-compose -f docker-compose.yml up -d
