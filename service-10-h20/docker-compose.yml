@@ -1,0 +1,20 @@
+version: "3"
+
+networks:
+  proxy:
+    external: true
+  internal:
+    external: false
+services:
+   h2o:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    labels:
+      - traefik.backend=h2o   
+      - traefik.frontend.rule=Host:h2o.southindiantrekkers.org 
+      - traefik.docker.network=proxy
+      - traefik.port=54321
+    networks:
+      - internal
+      - proxy
