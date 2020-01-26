@@ -15,7 +15,7 @@ services:
       - NODE_ENV=prod
     labels:
       - traefik.backend=torrent
-      - traefik.frontend.rule=Host:torrent.vaayadi.in
+      - traefik.frontend.rule=Host:torrent.southindiantrekkers.org
       - traefik.docker.network=proxy
       - traefik.port=3000
     networks:

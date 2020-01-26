@@ -1,0 +1,26 @@
+version: "3"
+
+networks:
+  proxy:
+    external: true
+  internal:
+    external: false
+services:
+   h2oai:
+#    user: $$(id -u):$$(id -g)
+    pid: "host"
+    volumes:
+      - ./data:/data
+      - ./log:/log
+      - ./license:/license
+      - ./tmp:/tmp
+    image: h2oai/dai-centos7-x86_64:1.8.1.1-cuda10.0.146
+    shm_size: '256m'
+    labels:
+      - traefik.backend=h2oai   
+      - traefik.frontend.rule=Host:h2oai.southindiantrekkers.org 
+      - traefik.docker.network=proxy
+      - traefik.port=12345
+    networks:
+      - internal
+      - proxy
