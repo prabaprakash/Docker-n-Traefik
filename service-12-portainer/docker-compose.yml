@@ -1,0 +1,26 @@
+version: '3'
+
+networks:
+  proxy:
+    external: true
+  internal:
+    external: false
+
+services:
+  torrent:
+    image: portainer/portainer
+    volumes:
+       - /local/entertainment:/downloads
+       - /var/run/docker.sock:/var/run/docker.sock
+       - portainer_data:/data portainer/portainer
+    environment:
+      - NODE_ENV=prod
+    labels:
+      - traefik.backend=torrent
+      - traefik.frontend.rule=Host:portainer.southindiantrekkers.org
+      - traefik.docker.network=proxy
+      - traefik.port=9000
+    networks:
+      - internal
+      - proxy
+
