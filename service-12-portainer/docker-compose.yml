@@ -24,3 +24,6 @@ services:
       - internal
       - proxy
 
+
+volumes:
+  portainer_data:
