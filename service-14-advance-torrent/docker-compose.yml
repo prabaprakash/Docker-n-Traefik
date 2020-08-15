@@ -1,0 +1,25 @@
+version: '3'
+
+networks:
+  proxy:
+    external: true
+  internal:
+    external: false
+
+services:
+  torrent:
+    image: boypt/cloud-torrent
+    volumes:
+       - /local/entertainment/downloads:/downloads
+       - /local/entertainment/torrents:/torrents
+    environment:
+      - NODE_ENV=prod
+    labels:
+      - traefik.backend=torrent
+      - traefik.frontend.rule=Host:advancetorrent.southindiantrekkers.org
+      - traefik.docker.network=proxy
+      - traefik.port=3000
+    networks:
+      - internal
+      - proxy
+
