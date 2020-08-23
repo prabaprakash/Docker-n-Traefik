@@ -8,7 +8,7 @@ sudo apt-get install apache2-utils
 htpasswd -nb admin password
 admin:$apr1$d.N9fSyN$laldHl2TvioNvPvQ7pQVn1
 ```
-copy generated hash and paste in traefik.toml 
+copy generated hash and paste in traefik.toml in line 5
 
 2. Docker create network for services
 ```bash
