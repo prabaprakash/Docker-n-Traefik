@@ -20,13 +20,14 @@ onDemand = false
 [acme.httpChallenge]
   entryPoint = "http"
 
+[docker]
 [tracing]
   backend = "jaeger"
   serviceName = "traefik"
   spanNameLimit = 0
 
   [tracing.jaeger]
-    samplingServerURL = "http://127.0.0.1:5778/sampling"
+    samplingServerURL = "http://localhost:5778/sampling"
     samplingType = "const"
     samplingParam = 1.0
-    localAgentHostPort = "127.0.0.1:6831"
+    localAgentHostPort = "jaeger:6831"
