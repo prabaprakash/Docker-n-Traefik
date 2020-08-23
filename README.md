@@ -2,9 +2,9 @@
 Service Discovery with Traefik
 
 1. Apache utils
-sudo apt-get install apache2-utils
 
 ```bash
+sudo apt-get install apache2-utils
 htpasswd -nb admin password
 admin:$apr1$d.N9fSyN$laldHl2TvioNvPvQ7pQVn1
 ```
