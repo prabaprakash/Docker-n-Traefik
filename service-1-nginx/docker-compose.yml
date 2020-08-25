@@ -13,7 +13,7 @@ services:
       dockerfile: Dockerfile
     labels:
       - traefik.backend=nginx
-      - traefik.frontend.rule=Host:nginx.vaayadi.in
+      - traefik.frontend.rule=Host:nginx.southindiantrekkers.org
       - traefik.docker.network=proxy
       - traefik.port=80
     networks:

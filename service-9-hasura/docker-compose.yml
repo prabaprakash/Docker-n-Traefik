@@ -7,6 +7,8 @@ networks:
 services:
   postgres:
     image: postgres
+    environment:
+     POSTGRES_HOST_AUTH_METHOD: trust
     restart: always
     volumes:
      - db_data:/var/lib/postgresql/data
@@ -14,7 +16,7 @@ services:
       - internal
       - proxy
   graphql-engine:
-    image: hasura/graphql-engine:v1.0.0-beta.6
+    image: hasura/graphql-engine:v1.3.1
     depends_on:
     - "postgres"
     restart: always
@@ -26,7 +28,7 @@ services:
       HASURA_GRAPHQL_ADMIN_SECRET: password123
     labels:
       - traefik.backend=hasura
-      - traefik.frontend.rule=Host:hasura.vaayadi.in
+      - traefik.frontend.rule=Host:hasura.southindiantrekkers.org
       - traefik.docker.network=proxy
       - traefik.port=8080
     networks:

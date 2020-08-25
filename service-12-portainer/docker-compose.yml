@@ -7,16 +7,16 @@ networks:
     external: false
 
 services:
-  torrent:
+  ui:
     image: portainer/portainer
+    restart: always
     volumes:
-       - /local/entertainment:/downloads
        - /var/run/docker.sock:/var/run/docker.sock
-       - portainer_data:/data portainer/portainer
+       - portainer_data:/data
     environment:
       - NODE_ENV=prod
     labels:
-      - traefik.backend=torrent
+      - traefik.backend=ui
       - traefik.frontend.rule=Host:portainer.southindiantrekkers.org
       - traefik.docker.network=proxy
       - traefik.port=9000
