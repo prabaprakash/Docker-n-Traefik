@@ -35,3 +35,29 @@ onDemand = false
   [metrics.prometheus]
     entryPoint = "traefik"
     buckets = [0.1,0.3,1.2,5.0]
+logLevel = "INFO"
+
+[traefikLog]
+  filePath = "/logs/traefik.log"
+  format   = "json"
+[accessLog]
+  filePath = "/logs/access.log"
+  format = "json"
+
+  [accessLog.filters]
+    statusCodes = ["200", "300-302"]
+    retryAttempts = true
+    minDuration = "10ms"
+
+  [accessLog.fields]
+    defaultMode = "keep"
+    [accessLog.fields.names]
+      "ClientUsername" = "drop"
+      # ...
+
+    [accessLog.fields.headers]
+      defaultMode = "keep"
+      [accessLog.fields.headers.names]
+        "User-Agent" = "redact"
+        "Authorization" = "drop"
+        "Content-Type" = "keep"
