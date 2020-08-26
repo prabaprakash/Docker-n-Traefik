@@ -1,0 +1,31 @@
+version: "3"
+
+networks:
+  proxy:
+    external: true
+  internal:
+    external: false
+
+services:
+  prome:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    ports:
+      - "9090:9090"
+    labels:
+      - traefik.backend=prome
+      - traefik.frontend.rule=Host:prometheus.southindiantrekkers.org
+      - traefik.docker.network=proxy
+      - traefik.port=9090
+    networks:
+      - internal
+      - proxy
+volumes:
+    prometheus_data: {}

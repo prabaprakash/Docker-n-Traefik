@@ -31,3 +31,7 @@ onDemand = false
     samplingType = "const"
     samplingParam = 1.0
     localAgentHostPort = "jaeger:6831"
+[metrics]
+  [metrics.prometheus]
+    entryPoint = "traefik"
+    buckets = [0.1,0.3,1.2,5.0]
