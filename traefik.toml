@@ -1,0 +1,37 @@
+defaultEntryPoints = ["http", "https"]
+[web]
+address = ":8080"
+  [web.auth.basic]
+  users = ["admin:$apr1$irouBYxf$tJUFJw7KqGADtTk.mVvNW/"]
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+      entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+    [entryPoints.https.tls]
+[acme]
+email = "mail@gmail.com"
+storage = "acme.json"
+entryPoint = "https"
+onHostRule = true
+onDemand = false
+[acme.httpChallenge]
+  entryPoint = "http"
+
+[docker]
+[tracing]
+  backend = "jaeger"
+  serviceName = "traefik"
+  spanNameLimit = 0
+
+  [tracing.jaeger]
+    samplingServerURL = "http://localhost:5778/sampling"
+    samplingType = "const"
+    samplingParam = 1.0
+    localAgentHostPort = "jaeger:6831"
+[metrics]
+  [metrics.prometheus]
+    entryPoint = "traefik"
+    buckets = [0.1,0.3,1.2,5.0]
