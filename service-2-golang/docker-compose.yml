@@ -1,10 +1,8 @@
-version: '3'
+version: '3.3'
 
 networks:
   proxy:
     external: true
-  internal:
-    external: false
 
 services:
   golang:
@@ -16,10 +14,11 @@ services:
     environment:
       - NODE_ENV=prod
     labels:
-      - traefik.backend=golang
-      - traefik.frontend.rule=Host:golang.vaayadi.in
-      - traefik.docker.network=proxy
-      - traefik.port=8100
+      - "traefik.port=8100"
+      - "traefik.enable=true"
+      - "traefik.http.routers.golang.rule=Host(`golang.domain.com`)"
+      - "traefik.http.routers.golang.entrypoints=websecure"
+      - "traefik.http.routers.golang.tls=true"
+      - "traefik.http.routers.golang.tls.certresolver=leresolver"
     networks:
-      - internal
       - proxy

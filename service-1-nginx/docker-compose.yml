@@ -11,7 +11,7 @@ services:
     labels:
       - "traefik.port=80"
       - "traefik.enable=true"
-      - "traefik.http.routers.nginx.rule=Host(`www.domain.com`)"
+      - "traefik.http.routers.nginx.rule=Host(`nginx.domain.com`)"
       - "traefik.http.routers.nginx.entrypoints=websecure"
       - "traefik.http.routers.nginx.tls=true"
       - "traefik.http.routers.nginx.tls.certresolver=leresolver"
