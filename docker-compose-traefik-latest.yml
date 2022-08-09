@@ -9,7 +9,7 @@ services:
       - --providers.docker
       - --providers.docker.exposedByDefault=false
       - --api
-      - --certificatesresolvers.leresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+      - --certificatesresolvers.leresolver.acme.caserver=https://acme-v02.api.letsencrypt.org/directory
       - --certificatesresolvers.leresolver.acme.email=mail@gmail.com
       - --certificatesResolvers.leresolver.acme.storage=acme.json
       - --certificatesresolvers.leresolver.acme.tlschallenge=true
